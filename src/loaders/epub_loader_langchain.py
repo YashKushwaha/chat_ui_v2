@@ -1,8 +1,7 @@
 import ebooklib
 from ebooklib import epub
 from bs4 import BeautifulSoup
-from llama_index.core.schema import Document  # ✅ LlamaIndex's Document
-from uuid import uuid4
+from langchain_core.documents import Document  # or langchain.schema
 
 class EPUBLoader:
     def __init__(self, file_path: str):
@@ -28,8 +27,7 @@ class EPUBLoader:
 
                 if raw_text:
                     chapters.append(Document(
-                        id_=str(uuid4()), 
-                        text=raw_text,
+                        page_content=raw_text,
                         metadata={
                             'source': self.file_path,
                             'chapter_title': title_text,
@@ -39,6 +37,7 @@ class EPUBLoader:
                     chapter_index += 1
 
         return chapters
+
 
     def load(self):
         return self._extract_epub_with_metadata()
