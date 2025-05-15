@@ -31,13 +31,17 @@ html, body {
 .scrollable-content {
   flex: 1;
   overflow-y: auto;
-  padding: 20px;
+  padding: 1rem;
+  width: 80%;
+  align-self: center;
+  box-sizing: border-box; /* optional, but good to ensure padding doesn't expand the width */
 }
 
-#chat-history {
+.chat-history {
   display: flex;
   flex-direction: column;
   gap: 10px;
+  width: 100%;
 }
 
 .chat-message {
@@ -65,27 +69,15 @@ html, body {
   line-height: 1.5;      /* optional: improves readability */
 }
 
-/*
-.bot-message {
-  padding: 10px 15px;
-  border-radius: 15px;
-  max-width: 75%;
-  word-wrap: break-word;
-  box-shadow: 0 1px 2px rgba(0,0,0,0.1);
-  align-self: flex-start;
-  background-color: #fff;
-}
-
-*/
 .form-div {
-  width: 75%;
+  width: 80%;
   align-self: center;
   min-height: 150px;
   background: #ccc;
   display: flex;
   flex-direction: column;
   gap: 10px;
-  padding: 10px;
+  padding: 1rem;
   box-sizing: border-box;
   margin-bottom: 10px;
   border-radius: 8px;
