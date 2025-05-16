@@ -1,3 +1,0 @@
-SYSTEM: {system}
-USER: {user}
-ASSISTANT:

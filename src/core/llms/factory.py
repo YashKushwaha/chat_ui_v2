@@ -41,7 +41,8 @@ class OllamaModel(BaseLLM):
         response = requests.post(self.url, json=payload, stream=stream)
         return token_stream(response) if stream else response.json()['response']
 
-
+    def chat(self, messages: List[Dict[str, str]], template: Optional[str] = None,**kwargs:Any) -> str:
+        pass
 
 class OpenAIModel(BaseLLM):
     def __init__(self, config):
@@ -78,5 +79,7 @@ def load_llm(config):
         return LlavaModel(model_config)
     elif provider == "openai":
         return OpenAIModel(model_config)
+    elif provider == "dummy":
+        return DummyLLM(model_config)
     else:
         raise ValueError(f"Unsupported LLM provider: {provider}")
