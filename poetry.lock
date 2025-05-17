@@ -1631,6 +1631,7 @@ files = [
 ]
 
 [package.dependencies]
+aiohttp = {version = "*", optional = true, markers = "extra == \"inference\""}
 filelock = "*"
 fsspec = ">=2023.5.0"
 packaging = ">=20.9"
@@ -2580,6 +2581,23 @@ typing-inspect = ">=0.8.0"
 wrapt = "*"
 
 [[package]]
+name = "llama-index-embeddings-huggingface"
+version = "0.5.4"
+description = "llama-index embeddings huggingface integration"
+optional = false
+python-versions = "<4.0,>=3.9"
+groups = ["main"]
+files = [
+    {file = "llama_index_embeddings_huggingface-0.5.4-py3-none-any.whl", hash = "sha256:fc8dfb3d5f161c9d1647875f0d872209b02b8a85bd46747278c989359ece62b3"},
+    {file = "llama_index_embeddings_huggingface-0.5.4.tar.gz", hash = "sha256:9c58c5acfb77f077a8e43660b1b037460126a8d180c175703ff31e89dab19d3e"},
+]
+
+[package.dependencies]
+huggingface-hub = {version = ">=0.19.0", extras = ["inference"]}
+llama-index-core = ">=0.12.0,<0.13"
+sentence-transformers = ">=2.6.1"
+
+[[package]]
 name = "llama-index-embeddings-openai"
 version = "0.3.1"
 description = "llama-index embeddings openai integration"
@@ -2730,6 +2748,21 @@ files = [
 [package.dependencies]
 chromadb = ">=0.5.17"
 llama-index-core = ">=0.12.0,<0.13.0"
+
+[[package]]
+name = "llama-index-vector-stores-faiss"
+version = "0.4.0"
+description = "llama-index vector_stores faiss integration"
+optional = false
+python-versions = "<4.0,>=3.9"
+groups = ["main"]
+files = [
+    {file = "llama_index_vector_stores_faiss-0.4.0-py3-none-any.whl", hash = "sha256:092907b38c70b7f9698ad294836389b31fd3a1273ea1d93082993dd0925c8a4b"},
+    {file = "llama_index_vector_stores_faiss-0.4.0.tar.gz", hash = "sha256:59b58e4ec91880a5871a896bbdbd94cb781a447f92f400b5f08a62eb56a62e5c"},
+]
+
+[package.dependencies]
+llama-index-core = ">=0.12.0,<0.13"
 
 [[package]]
 name = "llama-parse"
@@ -7189,4 +7222,4 @@ cffi = ["cffi (>=1.11)"]
 [metadata]
 lock-version = "2.1"
 python-versions = ">=3.10,<3.12"
-content-hash = "ba9ac1e0cf7166f50e6204b7e29fd02a470663f4b9b89a476997175f391e53d7"
+content-hash = "cefcaa889624caf06f94c572113cf9a3bb4eb85f16ea5c4b5afb90348bb6b58e"
