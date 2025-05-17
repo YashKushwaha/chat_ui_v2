@@ -21,6 +21,19 @@ html, body {
   box-sizing: border-box;
 }
 
+/* Sidebar content is laid out vertically */
+.sidebar-content {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 1rem;
+  box-sizing: border-box;
+}
+
+#document-list {
+  margin-top: auto;
+}
+
 .content {
   flex: 1;
   display: flex;

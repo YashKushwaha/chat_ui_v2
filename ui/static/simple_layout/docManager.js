@@ -1,4 +1,4 @@
-async function fetchDocuments() {
+export async function fetchDocuments() {
       const res = await fetch('/documents');
       const files = await res.json();
       const container = document.getElementById('document-list');
@@ -22,7 +22,7 @@ async function fetchDocuments() {
       });
     }
 
-    async function deleteDocument(filename) {
+export async function deleteDocument(filename) {
       if (!confirm(`Delete "${filename}"?`)) return;
       const res = await fetch(`/documents/${filename}`, { method: 'DELETE' });
       if (res.ok) {
@@ -33,4 +33,3 @@ async function fetchDocuments() {
     }
 
     // On load
-    fetchDocuments();
