@@ -1,8 +1,8 @@
 from jinja2 import Environment, FileSystemLoader
 from typing import List, Dict
 import os
-#from src.prompt_templates.registry import TEMPLATE_MAP
-from registry import TEMPLATE_MAP
+from src.prompt_templates.registry import TEMPLATE_MAP
+#from registry import TEMPLATE_MAP
     #loader=FileSystemLoader("src/prompt_templates"),
 
 env = Environment(

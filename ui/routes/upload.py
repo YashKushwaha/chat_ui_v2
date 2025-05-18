@@ -5,6 +5,8 @@ from fastapi.responses import JSONResponse
 from fastapi import APIRouter, HTTPException
 from llama_index.core import VectorStoreIndex
 
+from fastapi import Request
+
 from config_settings import UPLOAD_DIR
 import os
 
@@ -38,6 +40,10 @@ async def upload(file: UploadFile = File(...)):
 
     out = process_uploaded_file(file_location)    
     return {"message": f"File '{file.filename}' uploaded successfully"}
+
+@router.post("/add-to-context")
+async def add_to_context(request: Request):
+    return "Success"
 
 @router.route("/documents", methods=["GET"])
 def list_documents(request):

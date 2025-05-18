@@ -2,9 +2,9 @@ import os
 import pickle
 from pathlib import Path
 #from llama_index.llms import OllamaModel
-from loaders.epub_loader import EPUBLoader
-from text_splitters import get_recursive_splitter
-from embedder import get_embedding_model
+from src.llama_index.loaders.epub_loader import EPUBLoader
+from src.llama_index.text_splitters import get_recursive_splitter
+from src.llama_index.embedder import get_embedding_model
 
 import faiss
 import numpy as np
