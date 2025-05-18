@@ -6,12 +6,22 @@ from fastapi import APIRouter, HTTPException
 from llama_index.core import VectorStoreIndex
 
 from fastapi import Request
+from src.llama_index.embedder import get_embedding_model
 
 from config_settings import UPLOAD_DIR
 import os
-
+import faiss
 from src.llama_index.embedder import get_embedding_model
 from src.llama_index.index import create_embeddings
+from llama_index.vector_stores.faiss import FaissVectorStore
+from llama_index.core import Settings
+
+embedding_model = get_embedding_model()
+embedding_dim = len(embedding_model.get_text_embedding("dummy"))
+
+Settings.llm = None  # Important: prevents fallback to OpenAI
+Settings.embed_model = embedding_model
+
 def get_doc_id(file_path: str) -> str:
     """Generate unique ID (e.g., hash or slug) for a book."""
     return Path(file_path).stem.replace(" ", "_").lower()
@@ -38,16 +48,34 @@ async def upload(file: UploadFile = File(...)):
     with open(file_location, "wb") as buffer:
         shutil.copyfileobj(file.file, buffer)
 
-    out = process_uploaded_file(file_location)    
+    #out = process_uploaded_file(file_location)    
     return {"message": f"File '{file.filename}' uploaded successfully"}
 
 @router.post("/add-to-context")
 async def add_to_context(request: Request):
+    data = await request.json()
+    print(data['filename'])
+    filename = os.path.join(UPLOAD_DIR, data['filename'])
+    nodes = create_embeddings(filename, embedding_model)
+    faiss_index = faiss.IndexFlatL2(embedding_dim)
+    vector_store = FaissVectorStore(faiss_index=faiss_index)
+    index = VectorStoreIndex(nodes=nodes, vector_store=vector_store)
+    request.app.state.vector_store = index
     return "Success"
+
+@router.route("/vector_store", methods=["GET"])
+def vector_store(request):
+    if hasattr(request.app.state, "vector_store"):
+        index = request.app.state.vector_store
+        num_docs = len(index.docstore.docs)
+    else:
+        num_docs = 0
+    return JSONResponse(content=num_docs)
+
 
 @router.route("/documents", methods=["GET"])
 def list_documents(request):
-    files = [f for f in os.listdir(UPLOAD_DIR) if os.path.isfile(os.path.join(UPLOAD_DIR, f))]
+    files = [f for f in os.listdir(UPLOAD_DIR) if os.path.isfile(os.path.join(UPLOAD_DIR, f)) and f.endswith('.epub')]
     return JSONResponse(content=files)
 
 @router.delete("/documents/{filename}")

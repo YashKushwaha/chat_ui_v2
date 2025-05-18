@@ -8,12 +8,16 @@ from fastapi.staticfiles import StaticFiles
 from fastapi.responses import HTMLResponse
 
 from ui.config_settings import *
-from ui.routes import upload
+from ui.routes import upload, chat
+
+from src.llama_index.llms import OllamaModel
+
 class QueryRequest(BaseModel):
     message: str
 
 app = FastAPI()
 app.include_router(upload.router)
+app.include_router(chat.router)
 
 # Static
 app.mount("/static", StaticFiles(directory=STATIC_DIR), name="static")
@@ -28,8 +32,16 @@ async def echo(request: QueryRequest):
 def root(request: Request):
     return templates.TemplateResponse("base.html", {
         "request": request,
-        "chat_endpoint": "/echo"
+        "chat_endpoint": "/chat"
     })
+
+model = 'phi4'
+url = 'http://localhost:11434/api/generate'
+
+llm_config = dict(model=model, url=url)
+
+app.state.llm = OllamaModel(llm_config)
+
 
 if __name__ == "__main__":
     import uvicorn
