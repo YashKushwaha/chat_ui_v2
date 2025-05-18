@@ -1,7 +1,7 @@
 import os
 import pickle
 from pathlib import Path
-from llms import OllamaModel
+#from llama_index.llms import OllamaModel
 from loaders.epub_loader import EPUBLoader
 from text_splitters import get_recursive_splitter
 from embedder import get_embedding_model
@@ -12,10 +12,6 @@ from llama_index.vector_stores.faiss import FaissVectorStore
 from llama_index.core import VectorStoreIndex
 from llama_index.core import Settings
 from llama_index.core.query_engine import RetrieverQueryEngine
-
-
-
-
 
 def create_embeddings(file_path, embedding_model):
     
