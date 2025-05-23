@@ -1,0 +1,71 @@
+
+
+.chat-history {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+}
+
+.chat-message {
+  padding: 10px 15px;
+  border-radius: 15px;
+  max-width: 75%;
+  word-wrap: break-word;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+  
+}
+
+.user-message {
+  align-self: flex-end;
+  background-color: #dcf8c6;
+  white-space: normal;  /* Tor   white-space: pre-wrap; */
+}
+
+.bot-message {
+  align-self: flex-start;
+  background-color: #fff;
+}
+
+.bot-message p {
+  margin: 0 0 0.5em 0;  /* reduce bottom spacing between paragraphs */
+  line-height: 1.5;      /* optional: improves readability */
+}
+
+.chat-message.bot-message {
+  font-family: sans-serif;
+}
+
+.chat-message.bot-message h3 {
+  font-size: 1.2em;
+  margin-top: 1em;
+}
+
+.chat-message.bot-message code {
+  background-color: #f4f4f4;
+  padding: 0.2em 0.4em;
+  border-radius: 4px;
+  font-family: monospace;
+}
+
+/* Style for the code block with a bounding box */
+.highlighted-code {
+  background-color: #f4f4f4;
+  border: 2px solid #ccc;
+  padding: 10px;
+  border-radius: 5px;
+  margin: 10px 0;
+  font-family: "Courier New", Courier, monospace;
+  font-size: 14px;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Optionally, you can add syntax highlighting to the code */
+.highlighted-code code {
+  display: block;
+  padding: 10px;
+  background-color: #2d2d2d;
+  color: #6f0b26;
+}

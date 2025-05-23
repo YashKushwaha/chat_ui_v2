@@ -1,0 +1,48 @@
+
+
+#document-list {
+  background-color: rgba(0, 0, 0, 0.1); /* 50% transparent */
+  padding: 0px;
+  max-height: 400px; /* optional scroll limit */
+  overflow-y: auto;
+  font-family: sans-serif;
+  width: 100%;           /* or a fixed width like 400px */
+  max-width: 100%;       /* prevents overflow */
+  overflow: hidden;      /* clip overflow */
+  /*box-sizing: border-box; */
+  position: relative;
+  top: 60%;
+}
+.doc-item {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  overflow: clip;
+  padding: 2px;
+
+  box-sizing: border-box;
+}
+
+.doc-item span {
+  flex-shrink: 0;
+  margin-left: 1px;
+}
+
+.file-name {
+  /*flex-grow: 1;
+  flex-shrink: 1;
+  */
+  min-width: 50px; /* 🛑 This is the KEY fix */
+  max-width: 80%; /* 🛑 This is the KEY fix */
+  overflow: clip;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.add-btn,
+.delete-btn {
+  flex-shrink: 0;
+  flex-grow: 0;
+  margin-left: 1px;
+  cursor: pointer;
+}

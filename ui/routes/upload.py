@@ -19,7 +19,7 @@ from llama_index.core import Settings
 embedding_model = get_embedding_model()
 embedding_dim = len(embedding_model.get_text_embedding("dummy"))
 
-Settings.llm = None  # Important: prevents fallback to OpenAI
+#Settings.llm = None  # Important: prevents fallback to OpenAI
 Settings.embed_model = embedding_model
 
 def get_doc_id(file_path: str) -> str:
@@ -75,7 +75,7 @@ def vector_store(request):
 
 @router.route("/documents", methods=["GET"])
 def list_documents(request):
-    files = [f for f in os.listdir(UPLOAD_DIR) if os.path.isfile(os.path.join(UPLOAD_DIR, f)) and f.endswith('.epub')]
+    files = [f for f in os.listdir(UPLOAD_DIR) if os.path.isfile(os.path.join(UPLOAD_DIR, f)) and True] #f.endswith('.epub')
     return JSONResponse(content=files)
 
 @router.delete("/documents/{filename}")

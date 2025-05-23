@@ -9,7 +9,10 @@ export async function fetchDocuments() {
     item.className = 'doc-item';
 
     const name = document.createElement('span');
+    name.className = 'file-name';
     name.textContent = file;
+    const spacer = document.createElement('div');
+    spacer.style.flex = '1'; // This pushes the buttons to the right
 
     const delBtn = document.createElement('span');
     delBtn.className = 'delete-btn';
@@ -21,7 +24,8 @@ export async function fetchDocuments() {
     addBtn.textContent = '➕'; // Or use "Add to Context"
     addBtn.onclick = () => addToContext(file);
 
-    item.appendChild(name);
+    item.appendChild(name);    
+    item.appendChild(spacer);
     item.appendChild(addBtn);
     item.appendChild(delBtn);
     container.appendChild(item);

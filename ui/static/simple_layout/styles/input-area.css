@@ -1,0 +1,109 @@
+
+.form-div {
+  width: 80%;
+  align-self: center;
+  min-height: 150px;
+  background: #ccc;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 1rem;
+  box-sizing: border-box;
+  margin-bottom: 10px;
+  border-radius: 8px;
+  bottom: 10px;
+}
+
+.input-box {
+  position: relative;
+  bottom: 0;
+  left: 0;
+  width: 98%;
+  padding: 10px;
+  background: white;
+  border-top: 1px solid #ccc;
+}
+
+.input-box input {
+  width: 100%;
+  padding: 10px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.input-box textarea {
+  width: 100%;
+  padding: 10px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  resize: none;              /* Optional: disables manual resize */
+  overflow-y: auto;          /* Enables scrolling if text overflows */
+  line-height: 1.5;          /* Better readability for multiline */
+  min-height: 3rem;          /* Set minimum height */
+  max-height: 200px;         /* Optional cap to avoid over-expansion */
+}
+
+.button-group {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.toggle-btn {
+  padding: 8px 16px;
+  background-color: #ddd;
+  border: 1px solid #aaa;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.toggle-btn.active {
+  background-color: #4caf50;
+  color: white;
+  border-color: #4caf50;
+}
+
+.toggle-btn.upload-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.upload-container {
+	position: relative;
+	display: inline-block;
+	cursor: pointer;
+	color: #555;
+	padding: 10px 20px;
+	border: 2px dashed #ccc;
+	border-radius: 8px;
+	transition: all 0.3s;
+	font-size: 14px;
+	background-color: #f9f9f9;
+}
+
+.upload-container:hover {
+	background-color: #eee;
+	border-color: #888;
+	color: #000;
+}
+
+.upload-container i {
+	margin-right: 8px;
+}
+
+.upload-btn i {
+  font-size: 18px;
+}
+
+#file-upload {
+	display: none;
+}
